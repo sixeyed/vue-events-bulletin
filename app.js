@@ -1,5 +1,3 @@
-// var Vue = require('vue');
-
 new Vue({
   el: '#events',
 
@@ -16,7 +14,6 @@ new Vue({
 
     fetchEvents: function () {
       var events = [];
-      // this.$set('events', events);
       this.$http.get('/api/events')
         .success(function (events) {
           this.$set('events', events);
@@ -29,8 +26,6 @@ new Vue({
 
     addEvent: function () {
       if (this.event.title.trim()) {
-        // this.events.push(this.event);
-        // this.event = { title: '', detail: '', date: '' };
         this.$http.post('/api/events', this.event)
           .success(function (res) {
             this.events.push(this.event);
@@ -43,8 +38,7 @@ new Vue({
     },
 
     deleteEvent: function (index) {
-      if (confirm('確定要移除此項事件？')) {
-        // this.events.splice(index, 1);
+      if (confirm('Are you sure you want to delete this event?')) {        
         this.$http.delete('api/events/' + event.id)
           .success(function (res) {
             console.log(res);
